@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "تقرير العاملين بالشركة";
+    var departmentId = ViewData["DepartmentId"] as int?;
+}
+
+<h1 class="h3 mb-3">تقرير العاملين بالشركة</h1>
+
+<form method="get" asp-action="Index" class="row g-2 mb-3">
+    <div class="col-sm-6 col-md-4">
+        <label for="departmentId" class="form-label">القسم</label>
+        <select id="departmentId" name="departmentId" asp-items="ViewBag.Departments" class="form-select" required>
+            <option value="">-- اختر القسم --</option>
+        </select>
+    </div>
+    <div class="col-auto align-self-end">
+        <button type="submit" class="btn btn-primary">عرض التقرير</button>
+    </div>
+</form>
+
+@if (departmentId is not null)
+{
+    @* The browser's PDF viewer provides paging, zoom, print and download *@
+    <iframe src="@Url.Action("Render", new { departmentId })"
+            title="تقرير العاملين بالشركة"
+            class="w-100 border rounded"
+            style="height: 75vh;"></iframe>
+}

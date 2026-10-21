@@ -1,0 +1,72 @@
+@model PagedResult<ServiceYearsIncentiveListItemDto>
+@{
+    ViewData["Title"] = "حوافز سنوات الخدمة";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">حوافز سنوات الخدمة</h1>
+    <a asp-action="Create" class="btn btn-primary">إضافة شريحة</a>
+</div>
+
+<partial name="_Alerts" />
+
+@if (Model.Items.Count == 0)
+{
+    <div class="alert alert-info">لا توجد شرائح.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>الشريحة</th>
+                    <th>نسبة الحافز</th>
+                    <th class="text-end">إجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var incentive in Model.Items)
+                {
+                    <tr>
+                        <td>أكثر من @incentive.MinYears سنوات</td>
+                        <td>
+                            @if (incentive.IsSet)
+                            {
+                                @($"{incentive.Percentage} %")
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">لم يتم التحديد</span>
+                            }
+                        </td>
+                        <td class="text-end">
+                            <a asp-action="Edit" asp-route-id="@incentive.Id" class="btn btn-sm btn-outline-primary">تعديل</a>
+                            <a asp-action="Delete" asp-route-id="@incentive.Id" class="btn btn-sm btn-outline-danger">حذف</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (Model.TotalPages > 1)
+    {
+        <nav aria-label="التنقل بين الصفحات">
+            <ul class="pagination">
+                <li class="page-item @(Model.HasPrevious ? "" : "disabled")">
+                    <a class="page-link" asp-action="Index" asp-route-page="@(Model.Page - 1)">السابق</a>
+                </li>
+                @for (var p = 1; p <= Model.TotalPages; p++)
+                {
+                    <li class="page-item @(p == Model.Page ? "active" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-page="@p">@p</a>
+                    </li>
+                }
+                <li class="page-item @(Model.HasNext ? "" : "disabled")">
+                    <a class="page-link" asp-action="Index" asp-route-page="@(Model.Page + 1)">التالي</a>
+                </li>
+            </ul>
+        </nav>
+    }
+}

@@ -1,0 +1,36 @@
+@model DepartmentIncentiveFormDto
+@{
+    ViewData["Title"] = "تعديل حافز قسم";
+}
+
+<h1 class="h3 mb-3">تعديل حافز قسم</h1>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Edit" asp-route-id="@Model.DepartmentId" method="post">
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label class="form-label">القسم</label>
+                <input value="@Model.DepartmentName" class="form-control" disabled />
+                <input type="hidden" asp-for="DepartmentId" />
+                <input type="hidden" asp-for="DepartmentName" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Percentage" class="form-label"></label>
+                <input asp-for="Percentage" type="number" step="0.01" min="0.01" max="100" class="form-control" dir="ltr" />
+                <span asp-validation-for="Percentage" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+            <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

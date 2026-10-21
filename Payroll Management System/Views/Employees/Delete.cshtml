@@ -1,0 +1,30 @@
+@model EmployeeItemDto
+@{
+    ViewData["Title"] = "حذف موظف";
+}
+
+<h1 class="h3 mb-3">حذف موظف</h1>
+
+<div class="card border-danger">
+    <div class="card-body">
+        <p class="mb-2">هل أنت متأكد من حذف الموظف التالي؟</p>
+        <dl class="row mb-3">
+            <dt class="col-sm-3">الاسم</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+            <dt class="col-sm-3">القسم</dt>
+            <dd class="col-sm-9">@Model.DepartmentName</dd>
+            <dt class="col-sm-3">الدرجة الوظيفية</dt>
+            <dd class="col-sm-9">@Model.JobGradeName</dd>
+            <dt class="col-sm-3">الهاتف</dt>
+            <dd class="col-sm-9" dir="ltr">@Model.PhoneNumber</dd>
+            <dt class="col-sm-3">البريد الإلكتروني</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+        </dl>
+
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger">تأكيد الحذف</button>
+            <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+        </form>
+    </div>
+</div>

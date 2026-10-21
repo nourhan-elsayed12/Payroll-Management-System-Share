@@ -1,0 +1,26 @@
+@model AbsenceRuleItemDto
+@{
+    ViewData["Title"] = "حذف حالة غياب";
+}
+
+<h1 class="h3 mb-3">حذف حالة غياب</h1>
+
+<div class="card border-danger">
+    <div class="card-body">
+        <p class="mb-2">هل أنت متأكد من حذف الحالة التالية؟</p>
+        <dl class="row mb-3">
+            <dt class="col-sm-3">الحالة</dt>
+            <dd class="col-sm-9">@Model.Description</dd>
+            <dt class="col-sm-3">النوع</dt>
+            <dd class="col-sm-9">@Model.TypeName</dd>
+            <dt class="col-sm-3">النسبة</dt>
+            <dd class="col-sm-9">@($"{Model.Percentage:0.##} %")</dd>
+        </dl>
+
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger">تأكيد الحذف</button>
+            <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+        </form>
+    </div>
+</div>

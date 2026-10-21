@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "تقرير الحضور والانصراف (RDLC)";
+    var month = ViewData["Month"] as string;
+    var maxMonth = ViewData["MaxMonth"] as string;
+    var departmentId = ViewData["DepartmentId"] as int?;
+    var showReport = ViewData["ShowReport"] as bool? == true;
+}
+
+<h1 class="h3 mb-3">تقرير الحضور والانصراف</h1>
+
+<form method="get" asp-action="Index" class="row g-2 mb-3">
+    <div class="col-sm-6 col-md-3">
+        <label for="month" class="form-label">الشهر</label>
+        <input type="month" id="month" name="month" value="@month" max="@maxMonth" class="form-control"
+               data-val="true" data-val-required="الشهر مطلوب" />
+        <span class="text-danger" data-valmsg-for="month" data-valmsg-replace="true"></span>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <label for="departmentId" class="form-label">القسم</label>
+        <select id="departmentId" name="departmentId" asp-items="ViewBag.Departments" class="form-select"
+                data-val="true" data-val-required="القسم مطلوب">
+            <option value="">-- اختر القسم --</option>
+        </select>
+        <span class="text-danger" data-valmsg-for="departmentId" data-valmsg-replace="true"></span>
+    </div>
+    <div class="col-auto align-self-end">
+        <button type="submit" class="btn btn-primary">عرض التقرير</button>
+    </div>
+</form>
+
+@if (showReport)
+{
+    @* The browser's PDF viewer provides paging, zoom, print and download *@
+    <iframe src="@Url.Action("Render", new { month, departmentId })"
+            title="تقرير الحضور والانصراف"
+            class="w-100 border rounded"
+            style="height: 75vh;"></iframe>
+}
+
+@section Scripts {
+    @* Shows the Arabic "required" messages instead of the browser's own ones *@
+    <partial name="_ValidationScriptsPartial" />
+}

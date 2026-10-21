@@ -1,0 +1,24 @@
+@model AbsenceItemDto
+@{
+    ViewData["Title"] = "حذف سجل غياب";
+}
+
+<h1 class="h3 mb-3">حذف سجل غياب</h1>
+
+<div class="card border-danger">
+    <div class="card-body">
+        <p class="mb-2">هل أنت متأكد من حذف سجل الغياب التالي؟</p>
+        <dl class="row mb-3">
+            <dt class="col-sm-3">الموظف</dt>
+            <dd class="col-sm-9">@Model.EmployeeName</dd>
+            <dt class="col-sm-3">تاريخ الغياب</dt>
+            <dd class="col-sm-9">@Model.Date.ToString("yyyy-MM-dd")</dd>
+        </dl>
+
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger">تأكيد الحذف</button>
+            <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+        </form>
+    </div>
+</div>

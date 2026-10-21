@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Payroll Management System/PayrollManagementSystem.Web.csproj" />
+  <Project Path="PayrollManagementSystem.Business/PayrollManagementSystem.Business.csproj" />
+  <Project Path="PayrollManagementSystem.DataAccess/PayrollManagementSystem.DataAccess.csproj" />
+  <Project Path="PayrollManagementSystem.Domain/PayrollManagementSystem.Domain.csproj" />
+  <Project Path="PayrollManagementSystem.DTOs/PayrollManagementSystem.DTOs.csproj" />
+</Solution>

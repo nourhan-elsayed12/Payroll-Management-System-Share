@@ -1,0 +1,63 @@
+@model EmployeeFormDto
+@{
+    // max stops future dates in the browser date picker and is checked by jQuery Validate
+    var today = DateOnly.FromDateTime(DateTime.Today).ToString("yyyy-MM-dd");
+}
+
+<div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" autofocus />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" dir="ltr" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label asp-for="PhoneNumber" class="form-label"></label>
+        <input asp-for="PhoneNumber" class="form-control" dir="ltr" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label asp-for="Address" class="form-label"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label asp-for="BirthDate" class="form-label"></label>
+        <input asp-for="BirthDate" class="form-control" max="@today"
+               />
+        <span asp-validation-for="BirthDate" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label asp-for="HireDate" class="form-label"></label>
+        <input asp-for="HireDate" class="form-control" max="@today"
+               />
+        <span asp-validation-for="HireDate" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label asp-for="DepartmentId" class="form-label"></label>
+        <select asp-for="DepartmentId" asp-items="ViewBag.Departments" class="form-select">
+            <option value="">-- اختر القسم --</option>
+        </select>
+        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label asp-for="JobGradeId" class="form-label"></label>
+        <select asp-for="JobGradeId" asp-items="ViewBag.JobGrades" class="form-select">
+            <option value="">-- اختر الدرجة --</option>
+        </select>
+        <span asp-validation-for="JobGradeId" class="text-danger"></span>
+    </div>
+</div>

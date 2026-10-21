@@ -1,0 +1,118 @@
+@{
+    ViewData["Title"] = "الرئيسية";
+}
+
+<div class="mb-4">
+    <h1 class="h3 mb-1">نظام إدارة الرواتب</h1>
+    <p class="text-muted mb-0">اختر القسم الذي تريد إدارته</p>
+</div>
+
+<div class="row g-3">
+    <div class="col-sm-6 col-lg-4">
+        <a asp-controller="Departments" asp-action="Index" class="card home-card h-100 text-decoration-none">
+            <div class="card-body">
+                <h2 class="h5 card-title">الأقسام</h2>
+                <p class="card-text text-muted">إضافة وتعديل وحذف أقسام الشركة.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4">
+        <a asp-controller="Employees" asp-action="Index" class="card home-card h-100 text-decoration-none">
+            <div class="card-body">
+                <h2 class="h5 card-title">الموظفين</h2>
+                <p class="card-text text-muted">إدارة بيانات الموظفين وأقسامهم ودرجاتهم الوظيفية.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4">
+        <a asp-controller="Salaries" asp-action="Index" class="card home-card h-100 text-decoration-none">
+            <div class="card-body">
+                <h2 class="h5 card-title">المرتبات</h2>
+                <p class="card-text text-muted">تحديد المرتب الأساسي لكل درجة وظيفية.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4">
+        <a asp-controller="DepartmentIncentives" asp-action="Index" class="card home-card h-100 text-decoration-none">
+            <div class="card-body">
+                <h2 class="h5 card-title">حوافز الأقسام</h2>
+                <p class="card-text text-muted">نسبة الحافز الخاصة بكل قسم.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4">
+        <a asp-controller="ServiceYearsIncentives" asp-action="Index" class="card home-card h-100 text-decoration-none">
+            <div class="card-body">
+                <h2 class="h5 card-title">حوافز سنوات الخدمة</h2>
+                <p class="card-text text-muted">نسب الحافز حسب عدد سنوات عمل الموظف بالشركة.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4">
+        <a asp-controller="Absences" asp-action="Index" class="card home-card h-100 text-decoration-none">
+            <div class="card-body">
+                <h2 class="h5 card-title">تسجيل الغياب</h2>
+                <p class="card-text text-muted">تسجيل أيام غياب الموظفين ومتابعتها شهرياً.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4">
+        <a asp-controller="AbsenceRules" asp-action="Index" class="card home-card h-100 text-decoration-none">
+            <div class="card-body">
+                <h2 class="h5 card-title">قواعد الغياب</h2>
+                <p class="card-text text-muted">نسب الخصم والحافز حسب عدد أيام الغياب في الشهر.</p>
+            </div>
+        </a>
+    </div>
+
+@*     <div class="col-sm-6 col-lg-4">
+        <a asp-controller="AttendanceReport" asp-action="Index" class="card home-card h-100 text-decoration-none">
+            <div class="card-body">
+                <h2 class="h5 card-title">تقرير الحضور والانصراف</h2>
+                <p class="card-text text-muted">عدد أيام غياب كل موظف خلال الشهر، مع الفلترة بالقسم.</p>
+            </div>
+        </a>
+    </div> *@
+
+    <div class="col-sm-6 col-lg-4">
+        <a asp-controller="AttendanceRdlcReport" asp-action="Index" class="card home-card h-100 text-decoration-none">
+            <div class="card-body">
+                <h2 class="h5 card-title">تقرير الحضور والانصراف </h2>
+                <p class="card-text text-muted">عدد أيام غياب كل موظف خلال الشهر، مع الفلترة بالقسم.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4">
+        <a asp-controller="EmployeesReport" asp-action="Index" class="card home-card h-100 text-decoration-none">
+            <div class="card-body">
+                <h2 class="h5 card-title">تقرير العاملين بالشركة</h2>
+                <p class="card-text text-muted">بيانات الموظفين الأساسية، مع الفلترة بالقسم.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4">
+        <a asp-controller="IncentivesReport" asp-action="Index" class="card home-card h-100 text-decoration-none">
+            <div class="card-body">
+                <h2 class="h5 card-title">تقرير الحوافز والخصومات</h2>
+                <p class="card-text text-muted">حوافز وخصومات موظفي القسم عن الشهر السابق.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4">
+        <a asp-controller="SalariesReport" asp-action="Index" class="card home-card h-100 text-decoration-none">
+            <div class="card-body">
+                <h2 class="h5 card-title">تقرير مرتبات العاملين</h2>
+                <p class="card-text text-muted">المرتب الأساسي والحوافز والخصومات وصافي المرتب عن الشهر السابق.</p>
+            </div>
+        </a>
+    </div>
+</div>

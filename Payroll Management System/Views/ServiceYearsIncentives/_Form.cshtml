@@ -1,0 +1,13 @@
+@model ServiceYearsIncentiveFormDto
+
+<div class="mb-3">
+    <label asp-for="MinYears" class="form-label"></label>
+    <input asp-for="MinYears" type="number"  class="form-control" dir="ltr" autofocus />
+    <span asp-validation-for="MinYears" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Percentage" class="form-label"></label>
+    <input asp-for="Percentage" type="number" class="form-control" dir="ltr" />
+    <span asp-validation-for="Percentage" class="text-danger"></span>
+</div>

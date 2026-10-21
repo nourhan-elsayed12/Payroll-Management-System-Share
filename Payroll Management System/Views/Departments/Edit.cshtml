@@ -1,0 +1,21 @@
+@model DepartmentFormDto
+@{
+    ViewData["Title"] = "تعديل قسم";
+}
+
+<h1 class="h3 mb-3">تعديل قسم</h1>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+            @Html.AntiForgeryToken()
+            <partial name="_Form" model="Model" />
+            <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+            <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

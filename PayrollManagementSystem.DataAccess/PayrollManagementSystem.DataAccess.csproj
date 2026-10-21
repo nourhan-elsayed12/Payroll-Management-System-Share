@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.13" />
+    <!-- Security pin: Microsoft.Data.SqlClient pulls 9.0.11 (GHSA-846f-f764-76mx, GHSA-2fmv-rv2c-59x7) -->
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PayrollManagementSystem.Business\PayrollManagementSystem.Business.csproj" />
+    <ProjectReference Include="..\PayrollManagementSystem.Domain\PayrollManagementSystem.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

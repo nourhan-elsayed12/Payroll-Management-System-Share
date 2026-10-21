@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "تقرير مرتبات العاملين";
+    var departmentId = ViewData["DepartmentId"] as int?;
+    var month = ViewData["Month"] as string;
+}
+
+<h1 class="h3 mb-1">تقرير مرتبات العاملين</h1>
+<p class="text-muted mb-3">عن شهر @month (الشهر السابق)</p>
+
+<form method="get" asp-action="Index" class="row g-2 mb-3">
+    <div class="col-sm-6 col-md-4">
+        <label for="departmentId" class="form-label">القسم</label>
+        <select id="departmentId" name="departmentId" asp-items="ViewBag.Departments" class="form-select"
+                data-val="true" data-val-required="القسم مطلوب">
+            <option value="">-- اختر القسم --</option>
+        </select>
+        <span class="text-danger" data-valmsg-for="departmentId" data-valmsg-replace="true"></span>
+    </div>
+    <div class="col-auto align-self-end">
+        <button type="submit" class="btn btn-primary">عرض التقرير</button>
+    </div>
+</form>
+
+@if (departmentId is not null)
+{
+    @* The browser's PDF viewer provides paging, zoom, print and download *@
+    <iframe src="@Url.Action("Render", new { departmentId })"
+            title="تقرير مرتبات العاملين"
+            class="w-100 border rounded"
+            style="height: 75vh;"></iframe>
+}
+
+@section Scripts {
+    @* Shows the Arabic "required" message instead of the browser's own one *@
+    <partial name="_ValidationScriptsPartial" />
+}

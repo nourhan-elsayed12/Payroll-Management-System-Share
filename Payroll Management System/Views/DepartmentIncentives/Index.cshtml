@@ -1,0 +1,50 @@
+@model List<DepartmentIncentiveListItemDto>
+@{
+    ViewData["Title"] = "حوافز الأقسام";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">حوافز الأقسام</h1>
+</div>
+
+<partial name="_Alerts" />
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-info">لا توجد أقسام. أضف الأقسام أولاً من صفحة الأقسام.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>القسم</th>
+                    <th>نسبة الحافز</th>
+                    <th class="text-end">إجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var incentive in Model)
+                {
+                    <tr>
+                        <td>@incentive.DepartmentName</td>
+                        <td>
+                            @if (incentive.IsSet)
+                            {
+                                @($"{incentive.Percentage} %")
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">لم يتم التحديد</span>
+                            }
+                        </td>
+                        <td class="text-end">
+                            <a asp-action="Edit" asp-route-id="@incentive.DepartmentId" class="btn btn-sm btn-outline-primary">تعديل</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

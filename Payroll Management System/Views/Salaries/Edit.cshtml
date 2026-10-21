@@ -1,0 +1,36 @@
+@model SalaryFormDto
+@{
+    ViewData["Title"] = "تعديل مرتب";
+}
+
+<h1 class="h3 mb-3">تعديل مرتب</h1>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Edit" asp-route-id="@Model.JobGradeId" method="post">
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label class="form-label">الدرجة الوظيفية</label>
+                <input value="@Model.JobGradeName" class="form-control" disabled />
+                <input type="hidden" asp-for="JobGradeId" />
+                <input type="hidden" asp-for="JobGradeName" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="BaseSalary" class="form-label"></label>
+                <input asp-for="BaseSalary" type="number" class="form-control" dir="ltr" />
+                <span asp-validation-for="BaseSalary" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+            <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

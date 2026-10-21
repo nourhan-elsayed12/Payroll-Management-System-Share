@@ -1,0 +1,46 @@
+@model List<SalaryListItemDto>
+@{
+    ViewData["Title"] = "المرتبات";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">المرتبات</h1>
+</div>
+
+<partial name="_Alerts" />
+
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>الدرجة الوظيفية</th>
+                <th>المرتب الأساسي</th>
+                <th class="text-end">إجراءات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var salary in Model)
+            {
+                <tr>
+                    <td>@salary.JobGradeName</td>
+                    <td>
+                        @if (salary.BaseSalary>0)
+                        {
+                            @salary.BaseSalary
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning text-dark">لم يتم التحديد</span>
+                        }
+                    </td>
+                    <td class="text-end">
+
+                            <a asp-action="Edit" asp-route-id="@salary.JobGradeId" class="btn btn-sm btn-outline-primary">تعديل</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

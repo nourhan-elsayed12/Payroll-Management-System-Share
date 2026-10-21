@@ -1,0 +1,24 @@
+@model ServiceYearsIncentiveItemDto
+@{
+    ViewData["Title"] = "حذف شريحة";
+}
+
+<h1 class="h3 mb-3">حذف شريحة</h1>
+
+<div class="card border-danger">
+    <div class="card-body">
+        <p class="mb-2">هل أنت متأكد من حذف الشريحة التالية؟</p>
+        <dl class="row mb-3">
+            <dt class="col-sm-3">الشريحة</dt>
+            <dd class="col-sm-9">أكثر من @Model.MinYears سنوات</dd>
+            <dt class="col-sm-3">نسبة الحافز</dt>
+            <dd class="col-sm-9">@($"{Model.Percentage:0.##} %")</dd>
+        </dl>
+
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger">تأكيد الحذف</button>
+            <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+        </form>
+    </div>
+</div>
